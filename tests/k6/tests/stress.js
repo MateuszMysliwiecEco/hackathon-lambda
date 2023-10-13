@@ -1,4 +1,5 @@
 import login from "../requests/login.js";
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
 
 const users = [
     {'name':'QA Performance 1', 'email':'qaecoonline@ecoonline.com', 'password':'Test@123456', 'company code':'ecodemo', 'locale':'en'},
@@ -22,3 +23,9 @@ export let options = {
 export default function () {
   login(users)
 }
+
+export function handleSummary(data) {
+    return {
+      "../summaryStressTest.html": htmlReport(data),
+    };
+  }
