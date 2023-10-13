@@ -10,12 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+  - script: |
+      docker pull grafana/k6
+    displayName: Pull k6 image
+  - script: |
+      docker run -i \
+        -e K6_CLOUD_TOKEN=$(K6_CLOUD_TOKEN) \
+        -v `pwd`:/src \
+        grafana/k6 \
+        cloud /tests/k6/stress.js \
+    displayName: Run cloud test
