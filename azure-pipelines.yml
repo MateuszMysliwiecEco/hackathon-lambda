@@ -7,11 +7,9 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-services:
-  k6:
-    image: grafana/k6
-    command: run /tests/k6/tests/stress.js
-    volumes:
-      - ./tests/k6/tests/stress.js:/tests/k6/tests/stress.js          
+steps:
+  - task: k6-load-test@0
+    inputs:
+      filename: './tests/k6/tests/stress.js'
