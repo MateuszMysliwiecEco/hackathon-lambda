@@ -26,6 +26,6 @@ export default function () {
 
 export function handleSummary(data) {
     return {
-      "../summaryStressTest.html": htmlReport(data),
+      "../../../summaryStressTest.html": htmlReport(data),
     };
   }
