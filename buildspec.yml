@@ -12,3 +12,8 @@ phases:
   post_build:
     commands:
       - echo Performance test complete
+
+artifacts:
+  files:
+    - /tests/summaryStressTest.html
+  name: artifact-name
