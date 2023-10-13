@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - echo Run performance test
-      - docker run -v $PWD/tests/k6/tests/stress.js:/stress.js -i grafana/k6 run /stress.js
+      - docker run -v $PWD/tests/:/tests -i grafana/k6 run /tests/k6/tests/stress.js
   post_build:
     commands:
       - echo Performance test complete
