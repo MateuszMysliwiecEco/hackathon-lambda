@@ -10,13 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - script: |
-      docker pull grafana/k6
-    displayName: Pull k6 image
-  - script: |
-      docker run -i \
-        -e K6_CLOUD_TOKEN=$(K6_CLOUD_TOKEN) \
-        -v `pwd`:/src \
-        grafana/k6 \
-        cloud /tests/k6/stress.js \
-    displayName: Run cloud test
+  - task: k6-load-test@0
+    inputs:
+      filename: 'tests/k6/tests/stress.js'
