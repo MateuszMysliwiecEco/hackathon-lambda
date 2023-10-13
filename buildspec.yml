@@ -3,12 +3,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Pull grafana/k6 image..
-      - docker pull grafana/k6
+      - echo Pull loadimpact/k6 image..
+      - docker pull loadimpact/k6
   build:
     commands:
       - echo Run performance test
-      - docker run -i grafana/k6 run tests/k6/tests/stress.js
+      - docker run -i loadimpact/k6 run tests/k6/tests/stress.js
   post_build:
     commands:
       - echo Performance test complete
