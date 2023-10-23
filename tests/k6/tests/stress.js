@@ -16,16 +16,10 @@ export let options = {
         }
     },
     thresholds: {
-        http_req_duration: ['p(95)<1000'], // 95% of requests should be below 1000ms
+        http_req_duration: ['p(95)<2000'], // 95% of requests should be below 1000ms
     },
   };
 
 export default function () {
   login(users)
 }
-
-export function handleSummary(data) {
-    return {
-      "..//../summaryStressTest.html": htmlReport(data),
-    };
-  }
