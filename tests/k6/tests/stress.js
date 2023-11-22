@@ -1,17 +1,16 @@
 import login from "../requests/login.js";
-import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import papaparse from 'https://jslib.k6.io/papaparse/5.1.1/index.js';
+import { SharedArray } from 'k6/data';
 
-const users = [
-    {'name':'QA Performance 1', 'email':'qaecoonline@ecoonline.com', 'password':'Test@123456', 'company code':'ecodemo', 'locale':'en'},
-    {'name':'QA Performance 2', 'email':'qaecoonline+1@ecoonline.com', 'password':'Test@123456', 'company code':'ecodemo', 'locale':'en'},
-    {'name':'QA Performance 3', 'email':'qaecoonline+2@ecoonline.com', 'password':'Test@123456', 'company code':'ecodemo', 'locale':'en'}
-]
+const csvData = new SharedArray('another data name', function () {
+    return papaparse.parse(open('../data/data.csv'), { header: true }).data;
+  });
 
 export let options = {
     scenarios: {
         stress_test: {
             executor: 'per-vu-iterations',
-            vus: users.length,
+            vus: csvData.length,
             iterations: 1
         }
     },
@@ -21,5 +20,5 @@ export let options = {
   };
 
 export default function () {
-  login(users)
+  login(csvData)
 }

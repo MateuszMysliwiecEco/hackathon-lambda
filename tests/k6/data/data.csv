@@ -1,0 +1,4 @@
+name;email;password;company_code;locale
+QA Performance 1;qaecoonline@ecoonline.com;Test@123456;ecodemo;en
+QA Performance 2;qaecoonline+1@ecoonline.com;Test@123456;ecodemo;en
+QA Performance 3;qaecoonline+2@ecoonline.com;Test@123456;ecodemo;en
